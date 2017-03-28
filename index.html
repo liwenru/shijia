@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html phone="1"><!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<meta name="viewport" content="width=725, user-scalable=no">
+<!-- <meta name="model_url" content="http://ent.163.com/special/2016yulephotos/"> -->
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="msapplication-tap-highlight" content="no">
+<script src="js/ne.js"></script>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/weixinShare.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" language="javascript">
+var globalHost='http://t.dongfeng-nissan.com.cn/phy'; 
+var _smq = _smq || [];
+_smq.push(['_setAccount', '6b2a0957', new Date()]);
+_smq.push(['_setDirectoryIndex', 'index.html']);
+_smq.push(['_setClickTimeOut', 400]);
+_smq.push(['pageview']);
+(function() {
+var sm = document.createElement('script'); sm.type = 'text/javascript'; sm.async = true;
+sm.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdnmaster.com/sitemaster/collect.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sm, s);
+})();
+</script>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<style type="text/css">
+@media screen and (min-width:240px){#wapShareWrap a,.loadProgess{font-size:9px}}
+@media screen and (min-width:320px){#wapShareWrap a,.loadProgess{font-size:12px}}
+@media screen and (min-width:380px){#wapShareWrap a,.loadProgess{font-size:14px}}
+@media screen and (min-width:420px){#wapShareWrap a,.loadProgess{font-size:16px}}
+@media screen and (min-width:450px){#wapShareWrap a,.loadProgess{font-size:18px}}
+@media screen and (min-width:480px){#wapShareWrap a,.loadProgess{font-size:18px}}
+@media screen and (min-width:540px){#wapShareWrap a,.loadProgess{font-size:20.25px}}
+@media screen and (min-width:600px){#wapShareWrap a,.loadProgess{font-size:22px}}
+@media screen and (min-width:640px){#wapShareWrap a,.loadProgess{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="ent_painting" id="ent_painting">
+	<canvas id="app" width="725" height="1206"></canvas>
+	<div id="start" class="start_on">
+	</div>
+	<div class="collection">	
+	</div>
+</div>
+<div class="loading" >
+	<img src="image/loading_logo.png" >
+	<div class="loading_icon">
+		<div class="loader">
+	        <ul class="loading_1">
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	            <li></li>
+	        </ul>
+    	</div>
+		<div class="loadProgess">0%</div>
+	</div>
+</div>
+<div class="backcover hidden">
+	<div class="share_btn1 reload"><img src="image/sharebtn_1.jpg"></div>
+	<div class="share_btn2"><img src="image/sharebtn_2.jpg"></div>
+	<!-- <div class="logo"></div> -->
+	<!-- <a class="tie" href="http://3g.163.com/touch/comment.html?docid=BBBUS93C00031H2L&amp;board=tie_bbs&amp;title=1&amp;articleversion=B"></a> -->
+	<!-- <div class="share "onclick="h5Share.share();"></div>
+	<div class="reload" onclick="window.location.reload();" style="margin-top: -90px;"></div>
+	<a class="review" style="margin-top: -50px;" href="http://ent.163.com/special/2015yulephotos/"></a>
+	<div class="list"></div> -->
+</div>
+<div class="music music_open" ></div>
+<div class="share_bg hidden"><img src="image/share_bg.png"></div>
+<!-- <div class="share_btn" onclick="h5Share.share();"></div> -->
+<audio src="image/Go Big Or Go Home - American Authors.mp3" id="audio" loop></audio>
+</body>
+<script type="text/javascript">
+window.ontouchstart = function(e) { e.preventDefault(); };//禁止长按
+
+var music = document.getElementById("audio")
+console.log(music.paused)
+function i(i){i.preventDefault()}
+function e(i){this.canvas=i,      //   i ==canvas
+		this.ctx=this.canvas.getContext("2d"),
+		this.audio=NE("#audio")[0],
+		this.imgList=[
+		{link:"image/1.jpg",
+		 imgW:"750",
+		 imgH:"1206"},
+		 {link:"image/2.jpg",
+		 imgW:"750",
+		 imgH:"1206",
+		 areaW:"84",
+		 areaH:"135",
+		 areaL:"478",
+		 areaT:"436",
+		 limitMax:.87,
+		 limitMin:.1},
+		 {link:"image/3.jpg",
+		 limitMax:.8,
+		 limitMin:.155,
+		 imgW:"750",
+		 imgH:"1206",
+		 areaW:"101",
+		 areaH:"162.4",
+		 areaL:"11",
+		 areaT:"352"},
+		 {link:"image/4.png",
+		 limitMax:.95,
+		 limitMin:.3,
+		 imgW:"750",
+		 imgH:"1206",
+		 areaW:"180",
+		 areaH:"294.26",
+		 areaL:"34",
+		 areaT:"682"},
+		 // {link:"image/4_5.png",
+		 // limitMax:.86,
+		 // // limitMin:.9,
+		 // imgW:"750",
+		 // imgH:"1206",
+		 // areaW:"129",
+		 // areaH:"207.43",
+		 // areaL:"590",
+		 // areaT:"611"},
+		 {link:"image/5.jpg",
+		 limitMax:.9,
+		 limitMin:.025,
+		 imgW:"750",
+		 imgH:"1206",
+		 areaW:"75",
+		 areaH:"120.6",
+		 areaL:"650",
+		 areaT:"799"},
+		 // {link:"image/5_5.png",
+		 // limitMax:.8,
+		 // limitMin:.055,
+		 // imgW:"750",
+		 // imgH:"1206",
+		 // areaW:"64",
+		 // areaH:"102.91",
+		 // areaL:"489",
+		 // areaT:"275"},
+		 {link:"image/6.jpg",
+		 limitMax:.70,
+		 limitMin:.05,
+		 imgW:"750",
+		 imgH:"1206",
+		 areaW:"55",
+		 areaH:"88.44",
+		 areaL:"301",
+		 areaT:"590"},
+		 // {link:"image/7.jpg",
+		 // limitMax:.9,
+		 // limitMin:.169,
+		 // imgW:"750",
+		 // imgH:"1206",
+		 // areaW:"79",
+		 // areaH:"115",
+		 // areaL:"35",
+		 // areaT:"450"},
+		 {link:"image/7_5.gif",
+		 limitMax:.9,
+		 limitMin:.09,
+		 imgW:"750",
+		 imgH:"1206",
+		 areaW:"50",
+		 areaH:"80.4",
+		 areaL:"277",
+		 areaT:"630"},
+		 {link:"image/8.jpg",
+		 limitMax:.97,
+		  limitMin:.22,
+		 imgW:"750",
+		 imgH:"1206",
+		 areaW:"84",
+		 areaH:"135.07",
+		 areaL:"580",
+		 areaT:"784"},
+		{link:"image/9.jpg",
+		limitMax:.75,
+		limitMin:.26,
+		imgW:"750",
+		imgH:"1206",
+		areaW:"174",
+		areaH:"282",
+		areaL:"58",
+		areaT:"738"},
+		{link:"image/10.jpg",
+		limitMax:.8,
+		limitMin:.061,
+		imgW:"750",
+		imgH:"1206",
+		areaW:"128",
+		areaH:"205.82",
+		areaL:"162",
+		areaT:"845"},
+		{link:"image/10_5.jpg",
+		limitMax:.95,
+		limitMin:.061,
+		imgW:"750",
+		imgH:"1206",
+		areaW:"66",
+		areaH:"106.128",
+		areaL:"400",
+		areaT:"405"},
+		{link:"image/11.jpg",
+		limitMax:.9,
+		limitMin:.04,
+		imgW:"750",
+		imgH:"1206",
+		areaW:"328",
+		areaH:"527.42",
+		areaL:"169",
+		areaT:"29"},
+
+		{link:"image/12.png",
+		limitMax:.8,
+		limitMin:.08,
+		imgW:"750",
+		imgH:"1206",
+		areaW:"36",
+		areaH:"59",
+		areaL:"669",
+		areaT:"494"},
+		],
+
+		this.radio=1,
+		this.index=0,
+		this.fps=40, 
+		this.scale=.985,
+		this.scaleSlow=.99
+	}//数据设置
+function t(i){
+	var e=document.getElementById(i),
+
+	t=function(){
+		document.removeEventListener("WeixinJSBridgeReady",t),
+		document.removeEventListener("YixinJSBridgeReady",t),
+		e.play()
+	};
+	e.play(),window.WeixinJSBridge&&e.play(),
+	"undefined"==typeof WeixinJSBridge?document.addEventListener("WeixinJSBridgeReady",t,!1):(document.addEventListener("YixinJSBridgeReady",t,!1),
+	e.play())
+}
+/micromessenger/.test(navigator.userAgent.toLocaleLowerCase())&&NE(".share_btn").hide(),
+
+// document.addEventListener("touchmove",i,!1),
+
+// document.addEventListener("touchstart",i,!1),
+
+NE(".reload").bind("touchstart",function(){window.location.search='?'+Math.random(),_smq.push(['custom','2017anli-h5','again'])}),
+
+NE(".share_btn2").bind("touchstart",function(){NE(".share_bg").removeClass('hidden'),NE(".share_bg").bind("touchstart",function(){NE(".share_bg").addClass('hidden')}),_smq.push(['custom','2017anli-h5','xielou']),console.log("ok")}),
+
+// NE(".tie").bind("touchend",function(){window.location.href=this.href}),
+
+// NE(".review").bind("touchend",function(){window.location.href=this.href}),
+
+e.prototype.initCanvas=function(){
+	this.w=window.innerWidth,this.h=window.innerHeight,
+	this.w>this.h&&(this.w=725,this.h=1206,
+	NE("body").css({width:"725px",height:"1206px",margin:"0 auto",position:"relative",overflow:"hidden"}),
+	NE("html").css({width:"100%",height:"100%"})),
+	this.canvas.setAttribute("width",this.w),
+	this.canvas.setAttribute("height",this.h)
+},//设置canvas
+e.prototype.preload=function(){
+	function i(){e++,e==n.length&&a(t.imgList)}
+	for(var e=0,t=this,a=function(){},num=0,n=this.imgList,m=0;m<n.length;m++)this.imgList[m].image=new Image,
+	this.imgList[m].image.src=n[m].link,
+	this.imgList[m].image.i=m,
+	this.imgList[m].image.name=m,
+	this.imgList[m].image.className="item",
+
+	this.imgList[m].image.onload=function(){
+		num++;
+		var percent=parseInt((num/n.length)*100);
+		// console.log(percent+"%")
+		// if(num>n.length){}
+	NE(".collection").append(t.imgList[this.i].image),i(),
+	NE(".loadProgess").html(percent+'%')
+	// console.log(NE(".loadProgess"))
+},
+	this.imgList[m].image.onerror=function(){console.log("\u5931\u8d25"+this.i),i(),
+	NE(".collection").append(t.imgList[this.i].image)};
+	return{done:function(i){a=i||a}}
+
+},
+e.prototype.showend=function(){
+	$(".backcover").delay(800).fadeIn(1000);
+	NE(".backcover").delay(800).removeClass("hidden"),NE("#start").hide(),
+	setTimeout(function(){NE(".backcover").addClass("active")},200)
+},
+
+e.prototype.init=function(){
+	t("audio"),
+	NE(".music").addClass("music_open");
+	NE("#start").addClass('start_on')
+	var i=this;
+	this.initCanvas(),
+	this.preload().done(function(){
+		NE(".loading").hide(),
+	// NE(".cover").addClass("active"),
+	// setTimeout(function(){
+	// 	NE(".title").css({"background-image":"url(image/title.gif"+(new Date).getTime()+")"}),
+	// 	NE(".title_bg").css({"background-image":"url(image/title_bg.gif"+(new Date).getTime()+")"})
+	// },1e3),
+		i.domList=NE(".collection .item").sort(function(i,e){return i.name-e.name}),
+		i.img_oversize=i.domList[i.index+1].image,
+		i.img_minisize=i.domList[i.index].image,
+		i.draw(),
+		i.touchEvent()})
+},
+e.prototype.draw=function(){
+	if(this.index+1!=this.imgList.length){
+		if(this.radio<this.imgList[this.index+1].areaW/this.imgList[this.index+1].imgW&&(this.index++,this.radio=1,!this.imgList[this.index+1]))return void this.showend();
+		this.imgNext=this.imgList[this.index+1],
+		this.imgCur=this.imgList[this.index],
+		this.img_oversize=this.domList[this.index+1],
+		this.img_minisize=this.domList[this.index],
+		console.log(this.index);
+		if(this.index==0){this.scale=0.995;this.scaleSlow=.985}//1
+		if(this.index==1){this.scale=0.995;this.scaleSlow=.985};//2
+		if(this.index==2){this.scale=.995,this.scaleSlow=.985}//3
+		if(this.index==3){this.scale=.995,this.scaleSlow=.984}//4
+		
+		if(this.index==4){this.scale=.995,this.scaleSlow=.984}//5
+		// if(this.index==6){this.scale=.995,this.scaleSlow=.985}//5_5
+		if(this.index==5){this.scale=.995,this.scaleSlow=.984}//6
+		// if(this.index==8){this.scale=.995,this.scaleSlow=.989}//7
+		if(this.index==6){this.scale=.995,this.scaleSlow=.975}//7
+		if(this.index==7){this.scale=.984,this.scaleSlow=.995}//8
+		if(this.index==8){this.scale=.995,this.scaleSlow=.985}//9
+		if(this.index==9){this.scale=.995,this.scaleSlow=.98}//10
+		// if(this.index==10){this.scale=.984,this.scaleSlow=.995}//10_5
+		if(this.index==11){this.scale=.995,this.scaleSlow=.98}//11
+		if(this.index==12){this.scale=.995,this.scaleSlow=.98}//12
+		// if(this.index==15){this.scale=.995,this.scaleSlow=.98}//12
+		console.log(this.imgList[this.index])
+		if(this.index==12&&o==0.048){setTimeout(function(){this.scale=0,this.scaleSlow=0},1000)}
+		console.log(this.scaleSlow+"    ="+this.scale)
+		this.drawImgOversize(this.img_oversize,this.imgNext.imgW,this.imgNext.imgH,this.imgNext.areaW,this.imgNext.areaH,this.imgNext.areaL,this.imgNext.areaT,this.radio),
+		this.drawImgMinisize(this.img_minisize,this.imgCur.imgW,this.imgCur.imgH,this.imgNext.imgW,this.imgNext.imgH,this.imgNext.areaW,this.imgNext.areaH,this.imgNext.areaL,this.imgNext.areaT,this.radio)}},
+e.prototype.touchEvent=function(){
+	musicbtn = NE(".music").hasClass("music_close");
+	 if(music.paused&&!musicbtn){music.play();}
+	var i=this;
+	NE("#start").bind("touchstart",function(){
+						 musicbtn = NE(".music").hasClass("music_close");
+					if(music.paused&&!musicbtn){music.play();}
+					function e(){var a=(new Date).getTime();
+						if(i.index+1!=i.imgList.length){
+							if(a-t<1e3/i.fps)return void(i.timer=requestAnimationFrame(e));   //1e3 时间
+							t=a,
+							i.imgList[i.index+1].limitMax&&i.imgList[i.index+1].limitMin&&i.radio<i.imgList[i.index+1].limitMax&&i.radio>i.imgList[i.index+1].limitMin?i.radio=i.scaleSlow*i.radio:i.radio=i.scale*i.radio,
+							i.draw(),
+
+							console.log(i.radio)
+							i.timer=requestAnimationFrame(e);
+							_smq.push(['custom','2017anli-h5','chang']);}
+						}
+						cancelAnimationFrame(i.timer),
+						NE(".cover").length&&NE(".cover")[0].remove();
+						var t=(new Date).getTime();
+						i.timer=requestAnimationFrame(e);
+						// if(this.index==12&&o==0.048){cancelAnimationFrame(i.timer);console.log("ok")};
+	}),
+	NE("#start").bind("touchstart",function(){NE("#start").addClass('start_on')}),
+	NE("#start").bind("touchend",function(){cancelAnimationFrame(i.timer)}),
+	// NE("#start").hasClass('start_on')?(NE("#start").addClass('start_off').removeClass('start_on')):(NE("#start").addClass('start_on').removeClass('start_off'))
+	NE(".music").bind("touchend",function(){console.log(22);NE(".music").hasClass("music_close")?(NE(".music").removeClass("music_close").addClass("music_open"),NE("#audio")[0].play()):(NE(".music").addClass("music_close").removeClass('music_open'),NE("#audio")[0].pause());})
+},
+e.prototype.drawImgOversize=function(i,e,t,a,n,m,s,g){
+	console.log('imgoversize  i='+i+"  e="+e+"  t="+t+"   a="+a+"  n="+n+"  m="+m+"   s="+s+"  g="+g)
+	this.ctx.drawImage(i,m-(a/g-a)*(m/(e-a)),s-(n/g-n)*(s/(t-n)),a/g,n/g,0,0,750,1206)},
+e.prototype.drawImgMinisize=function(i,e,t,a,n,m,s,g,r,o){
+	console.log('imgMinisize  i='+i+"  e="+e+"  t="+t+"   a="+a+"  n="+n+"  m="+m+"   s="+s+"  g="+g+"  r="+r+"  o="+o)
+	this.ctx.drawImage(i,0,0,e,t,(m/o-m)*(g/(a-m))*o*750/m,(s/o-s)*(r/(n-s))*o*1206/s,750*o,1206*o)};
+var a=new e(NE("#app")[0]);a.init();
+
+
+</script>
+</html>
